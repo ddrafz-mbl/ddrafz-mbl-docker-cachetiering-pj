@@ -1,0 +1,62 @@
+services:
+  web:
+    build:
+      context: ./app
+    # ports:
+    #   - "5000:5000"
+    depends_on:
+      - memcached
+      - redis
+      - mongo
+    environment:
+      - MEMCACHED_HOST=nginx
+      - REDIS_HOST=redis
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - MONGO_DB=userdb
+    networks:
+      - memcached-lab_memcached-net
+      
+
+  memcached:
+    image: memcached:1.6-alpine
+    command: ["memcached", "-vv"]
+    networks:
+      - memcached-lab_memcached-net
+
+  redis:
+    image: redis:7.0-alpine
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./cache_redis:/data
+    networks:
+      - memcached-lab_memcached-net
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongodb
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    ports:
+      - "27017:27017"
+    networks:
+      - memcached-lab_memcached-net
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./conf.d/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - web
+    ports:
+      - 5000:80
+    networks:
+      - memcached-lab_memcached-net
+
+networks:
+  memcached-lab_memcached-net:
+    driver: bridge
