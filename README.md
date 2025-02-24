@@ -22,10 +22,10 @@ sudo pip install redis==5.2.1
 
 Run docker compose:
 
-build test to see logs:
+build test to see logs: \
 docker compose up --build --scale web=3
 
-build to detach:
+build to detach: \
 docker compose up --build --scale web=3 -d
 
 
