@@ -2,8 +2,9 @@
 ![Docker Cache Tiering](docker-cachetiering-diagram1.png)
 
 ## if cloned into server, please rename ddrafz-mbl-docker-cachetiering-pj to memcached-lab
-
+```
 mv please rename ddrafz-mbl-docker-cachetiering-pj memcached-lab
+```
 ```
 cd memcached-lab
 ```
