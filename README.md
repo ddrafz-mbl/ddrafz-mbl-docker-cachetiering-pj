@@ -71,10 +71,10 @@ curl -X DELETE http://localhost:5000/delete_user/1
 curl -X DELETE http://localhost:5000/delete_user/2
 ```
 ```
-curl -X DELETE http://localhost:5000/delete_user/3 \
+curl -X DELETE http://localhost:5000/delete_user/3
 ```
 ```
-curl -X DELETE http://localhost:5000/delete_user/4 \
+curl -X DELETE http://localhost:5000/delete_user/4
 ```
 ```
 curl -X DELETE http://localhost:5000/delete_user/5
