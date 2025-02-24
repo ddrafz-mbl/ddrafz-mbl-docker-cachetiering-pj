@@ -4,6 +4,9 @@
 ## if cloned into server, please rename ddrafz-mbl-docker-cachetiering-pj to memcached-lab
 
 mv please rename ddrafz-mbl-docker-cachetiering-pj memcached-lab
+```
+cd memcached-lab
+```
 
 ## Prerequisites installation
 
@@ -20,10 +23,6 @@ sudo pip install pylibmc==1.6.3
 ```
 ```
 sudo pip install redis==5.2.1
-```
-
-```
-cd memcached-lab
 ```
 
 Run docker compose:
