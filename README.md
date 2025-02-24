@@ -8,24 +8,6 @@ mv ddrafz-mbl-docker-cachetiering-pj memcached-lab
 ```
 cd memcached-lab
 ```
-
-## Prerequisites installation
-
-Install Required Python Libraries: \
-You can install the required libraries using pip:
-```
-sudo pip install Flask==2.3.2
-```
-```
-sudo pip install pymongo==4.3.3
-```
-```
-sudo pip install pylibmc==1.6.3
-```
-```
-sudo pip install redis==5.2.1
-```
-
 Run docker compose:
 
 build test to see logs:
