@@ -1,2 +1,2 @@
 ## Docker Cache Tiering
-![Docker Cache Tiering](docker-cachetiering-diagram.png)
+![Docker Cache Tiering](docker-cachetiering-diagram1.png)
