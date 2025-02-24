@@ -11,3 +11,6 @@ memcached-lab/
 ├── init-mongo.js
 ├── docker-compose.yml
 └── README.md
+
+## Docker Cache Tiering
+![Docker Cache Tiering](docker-cachetiering-diagram.png)
