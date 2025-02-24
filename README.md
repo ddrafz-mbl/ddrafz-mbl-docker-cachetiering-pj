@@ -44,7 +44,7 @@ curl -X DELETE http://localhost:5000/delete_user/5
 ## Prerequisites installation
 
 Install Required Python Libraries: \
-You can install the required libraries using pip: \
+You can install the required libraries using pip:
 
 sudo pip install Flask==2.3.2 \
 sudo pip install pymongo==4.3.3 \
