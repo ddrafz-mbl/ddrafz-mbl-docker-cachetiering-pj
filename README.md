@@ -4,17 +4,17 @@
 * This project is designed to cache user data using a cache tiering technique between Memcached (L1) and Redis (L2), running on Docker.
 
 ## How It Works
-* Users send requests through an Nginx load balancer with 3 nodes (round-robin strategy) to distribute traffic evenly.
+* Users send requests through an NGINX load balancer with 3 nodes (round-robin strategy) to distribute traffic evenly.
 * The request first checks L1 (Memcached) for cached data.
-* If the data is not found in L1, it queries L2 (Redis).
-* If the data is still not available in L2, it fetches it from the database (DB).
-* The DB returns the data, and the system stores it in both L2 (Redis) and L1 (Memcached) for future requests.
+* If the data is not found in L1, it query L2 (Redis).
+* If the data is still not available in L2, it fetches it from DB.
+* The DB return the data, and the system store it in both L2 (Redis) and L1 (Memcached) for future requests.
 
 ## Failure Scenarios
 * If L1 (Memcached) is down, requests will still fetch data from L2 (Redis).
 * When L1 is back online, it resumes normal operations.
 * If L2 (Redis) is down but data exists in L1, the system continues working normally.
-* If both L1 and L2 are down, the cache system fails—urgent action is required.
+* If both L1 and L2 are down, the cache system fails-urgent action is required.
 
 ## Diagram
 ![Docker Cache Tiering](docker-cachetiering-diagram1.png)
@@ -78,7 +78,31 @@ Add User 5:
 ```
 curl -X POST http://localhost:5000/add_user -H "Content-Type: application/json" -d '{"id":5,"name":"accord prom","email":"accord@unidev.com"}'
 ```
-
+## Check data in Redis
+Use docker exec in terminal:
+```
+docker exec -it memcached-lab-redis-1 sh
+```
+In redis:
+```
+redis-cli
+```
+Check users:
+```
+keys *
+```
+```
+get user:1
+```
+```
+get user:2
+```
+```
+get user:3
+```
+```
+get user:4
+```
 Delete User 1-5:
 ```
 curl -X DELETE http://localhost:5000/delete_user/1
