@@ -1,5 +1,38 @@
-## Docker Cache Tiering
+## Docker Cache Tiering: Python Flask, Nginx, Memcached, Redis, MongoDB
+
+## Project Overview
+* This project is designed to cache user data using a cache tiering technique between Memcached (L1) and Redis (L2), running on Docker.
+
+## How It Works
+* Users send requests through an Nginx load balancer with 3 nodes (round-robin strategy) to distribute traffic evenly.
+* The request first checks L1 (Memcached) for cached data.
+* If the data is not found in L1, it queries L2 (Redis).
+* If the data is still not available in L2, it fetches it from the database (DB).
+* The DB returns the data, and the system stores it in both L2 (Redis) and L1 (Memcached) for future requests.
+
+## Failure Scenarios
+* If L1 (Memcached) is down, requests will still fetch data from L2 (Redis).
+* When L1 is back online, it resumes normal operations.
+* If L2 (Redis) is down but data exists in L1, the system continues working normally.
+* If both L1 and L2 are down, the cache system fails—urgent action is required.
+
+## Diagram
 ![Docker Cache Tiering](docker-cachetiering-diagram1.png)
+
+## Structure docker cache tiering
+memcached-lab/ \
+├── app/ \
+│   ├── app.py \
+│   │── Dockerfile \
+│   └── requirements.txt \
+├── conf.d/ \
+│   └── nginx.conf \
+├── cache_redis/ \
+├── logs/ \
+│   └── nginx/ \
+├── init-mongo.js \
+├── docker-compose.yml \
+└── README.md
 
 ## if cloned into server, please rename ddrafz-mbl-docker-cachetiering-pj to memcached-lab
 ```
