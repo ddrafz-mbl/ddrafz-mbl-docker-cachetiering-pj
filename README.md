@@ -1,4 +1,4 @@
-## Docker Cache Tiering: Python Flask, Nginx, Memcached, Redis, MongoDB
+# Docker Cache Tiering: Python Flask, NGINX, Memcached, Redis, MongoDB
 
 ## Project Overview
 * This project is designed to cache user data using a cache tiering technique between Memcached (L1) and Redis (L2), running on Docker.
