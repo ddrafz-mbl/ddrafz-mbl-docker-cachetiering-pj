@@ -52,11 +52,11 @@ build to detach:
 docker compose up --build --scale web=3 -d
 ```
 Open web browser:
-list users all:
+List users All:
 ```
 http://localhost:5000/users
 ```
-user 1-4:
+User 1-4:
 ```
 http://localhost:5000/user/1
 ```
@@ -78,7 +78,7 @@ Add User 5:
 ```
 curl -X POST http://localhost:5000/add_user -H "Content-Type: application/json" -d '{"id":5,"name":"accord prom","email":"accord@unidev.com"}'
 ```
-## Check data in Redis
+## Check cached in Redis
 Use docker exec in terminal:
 ```
 docker exec -it memcached-lab-redis-1 sh
