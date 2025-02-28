@@ -1,4 +1,4 @@
-# Docker Cache Tiering: Python Flask, NGINX, Memcached, Redis, MongoDB
+# Docker Cache Tiering - Python Flask, NGINX, Memcached, Redis, MongoDB
 
 ## Project Overview
 * This project is designed to cache user data using a cache tiering technique between Memcached (L1) and Redis (L2), running on Docker.
@@ -119,6 +119,17 @@ curl -X DELETE http://localhost:5000/delete_user/4
 ```
 curl -X DELETE http://localhost:5000/delete_user/5
 ```
+## Project Consideration for Multi-Node Environment
+This project is designed for a single-node environment. If you scale to multiple servers and use a Load Balancer, there will be issues with Memcached (L1) because it does not synchronize data across multiple nodes.
+## Key Issue: Cache Inconsistency
+* Memcached (L1) is not shared → Different nodes may have different cache data.
+* Data distribution is inconsistent → Requests routed to different nodes may return outdated or missing cache.
+* Cache invalidation is harder → Updating or deleting cache across multiple Memcached instances is complex.
+## Solution Consideration
+* If you scale horizontally (multiple servers), Redis (L2) should be the primary cache instead of Memcached.
+* Use Redis Cluster or Sentinel to ensure cache consistency across nodes.
+* If Memcached is still needed, consider consistent hashing to distribute data evenly. \
+⚠️  Please evaluate your system architecture carefully before scaling.
 
 ## Youtube
 https://youtube.com/shorts/k-ESiZKupII
