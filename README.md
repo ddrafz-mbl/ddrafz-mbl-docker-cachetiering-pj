@@ -133,3 +133,8 @@ This project is designed for a single-node environment. If you scale to multiple
 
 ## Youtube
 https://youtube.com/shorts/k-ESiZKupII
+
+## Gitlab CI/CD Pipeline
+https://gitlab.com/public-delivery/docker-cachetiering
+
+https://youtube.com/shorts/67AvuTsJXNY
